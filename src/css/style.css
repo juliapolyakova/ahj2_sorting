@@ -1,0 +1,14 @@
+table {
+  margin: auto;
+  width: 600px;
+} 
+
+th {
+  padding: 4px;
+  border: 1px solid grey;
+}
+
+td {
+  padding: 4px;
+  border: 1px solid grey;
+}
