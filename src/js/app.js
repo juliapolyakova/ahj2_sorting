@@ -33,27 +33,27 @@ function cleanImg() {
 }
 
 function byNumb(type, way) {
-  loadTable();
   cleanImg();
 
   const field = document.getElementById(type);
   data.sort((a, b) => {
     if (way === 'down') {
-      field.textContent = `${type} ↓`;
+      field.textContent = `${type} ↑`;
       return b[type] - a[type];
     }
 
-    field.textContent = `${type} ↑`;
+    field.textContent = `${type} ↓`;
     return a[type] - b[type];
   });
+
+  loadTable();
 }
 
 function byTitle(type, way) {
-  loadTable();
   cleanImg();
   const titleTbl = document.getElementById('title');
 
-  if (way === 'up') {
+  if (way === 'down') {
     data.sort((a, b) => {
       titleTbl.textContent = 'title ↑';
       if (b[type] < a[type]) {
@@ -64,19 +64,21 @@ function byTitle(type, way) {
       }
       return 0;
     });
+  } else {
+    data.sort((a, b) => {
+      titleTbl.textContent = 'title ↓';
+
+      if (a[type] < b[type]) {
+        return -1;
+      }
+      if (a[type] > b[type]) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
-  data.sort((a, b) => {
-    titleTbl.textContent = 'title ↓';
-
-    if (a[type] < b[type]) {
-      return -1;
-    }
-    if (a[type] > b[type]) {
-      return 1;
-    }
-    return 0;
-  });
+  loadTable();
 }
 
 function timer() {
